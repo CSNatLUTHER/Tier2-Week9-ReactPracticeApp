@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#taskTable table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+#taskTable th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#taskList{
+  width: 80% ;
+  margin-left: auto;
+  margin-right: auto;
 }

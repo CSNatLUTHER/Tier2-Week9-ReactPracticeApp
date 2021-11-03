@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Body from './components/Body/Body'
+import Header from './components/Header/Header';
+import axios from 'axios'
 
 function App() {
+
+  const [tasks, setTasks ] = useState([])
+
+  const getTasks = () => {
+    axios.get( '/tasks' ).then( (response)=>{
+      setTasks( response.data );
+    }).catch((err)=>{
+      alert('nope');
+      console.log(err);
+    })
+  }
+
+  useEffect( ()=> {
+    getTasks();
+    console.log(tasks);
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Body tasks={tasks} />
     </div>
   );
 }
