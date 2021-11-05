@@ -1,15 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const tasks = require('./routes/tasks.router.js');
+const items = require('./routes/items.router.js');
 const PORT = process.env.PORT || 5001;
 
 /** ---------- MIDDLEWARE ---------- **/
+app.use( bodyParser.urlencoded( {extended:true}));
 app.use(bodyParser.json()); // needed for axios requests
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-app.use('/tasks', tasks);
+app.use('/items', items);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT,  () => {

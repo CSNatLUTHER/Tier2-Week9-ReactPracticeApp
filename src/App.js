@@ -6,11 +6,11 @@ import axios from 'axios'
 
 function App() {
 
-  const [tasks, setTasks ] = useState([])
+  const [items, setItems ] = useState([])
 
-  const getTasks = () => {
-    axios.get( '/tasks' ).then( (response)=>{
-      setTasks( response.data );
+  const getItems = () => {
+    axios.get( '/items' ).then( (response)=>{
+      setItems( response.data );
     }).catch((err)=>{
       alert('nope');
       console.log(err);
@@ -18,14 +18,14 @@ function App() {
   }
 
   useEffect( ()=> {
-    getTasks();
-    console.log(tasks);
+    getItems();
+    console.log(items);
   },[]);
 
   return (
     <div className="App">
       <Header />
-      <Body tasks={tasks} />
+      <Body items={items} getItems={getItems}/>
     </div>
   );
 }
