@@ -13,6 +13,11 @@ function NewItem(props) {
     console.log( ' in NewItem' );
     axios.post( '/items', newItem ).then( (response )=>{
         console.log( 'back from POST:', response )
+        setNewItem({
+          item: '',
+          description: '',
+          price:''
+        })
         props.getItems();
     }).catch( ( err )=>{
         console.log(err);
@@ -41,9 +46,9 @@ const addPrice = (event) =>{
     return (
       <div>
         <h2>NewItem</h2>
-        <input type="text" placeholder="item" onChange={(event)=> addListItem( event )}></input>
-        <input type="text" placeholder="description" onChange={(event)=>addDescription( event )}></input>
-        <input type="number" placeholder="price" onChange={(event)=>addPrice( event )}></input>
+        <input type="text" placeholder="item" onChange={(event)=> addListItem( event )} value={newItem.item} ></input>
+        <input type="text" placeholder="description" onChange={(event)=>addDescription( event )} value={newItem.description}></input>
+        <input type="number" placeholder="price" onChange={(event)=>addPrice( event )} value={newItem.price}></input>
         <button onClick={ addItem }>Add</button>
       </div>
     );
