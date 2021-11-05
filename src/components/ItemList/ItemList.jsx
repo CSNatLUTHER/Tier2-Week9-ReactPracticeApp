@@ -13,9 +13,10 @@ function ItemList(props) {
               <th>description</th>
               <th>price</th>
               <th>purchased</th>
+              <th>delete</th>
             </tr>
           </thead>
-            {props.items.map( item => (<Item item={item} key={item.id}/>) ) }
+            {props.items.map( item => (<Item item={item} key={item.id} getItems={props.getItems}/>)  ) }
         </table>
       </div>
     );

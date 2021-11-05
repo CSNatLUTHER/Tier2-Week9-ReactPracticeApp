@@ -7,7 +7,7 @@ function Body( props ) {
       <div>
         <h2>Body</h2>
         <NewItem getItems={props.getItems}/>
-        <ItemList items={props.items}/>
+        <ItemList items={props.items} getItems={props.getItems}/>
       </div>
     );
 }

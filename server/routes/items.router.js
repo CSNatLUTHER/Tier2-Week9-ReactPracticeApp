@@ -18,6 +18,18 @@ router.get('/', (req, res) => {
 }); // END PUT Route
 
 // PUT Route
+router.put( '/:id', (req, res )=>{
+    console.log( '/list PUT:', req.params );
+    const queryString = `UPDATE "shopping_list" SET "purchased"=TRUE WHERE id=$1;`;
+    const values = [ req.params.id ];
+    pool.query( queryString, values ).then( (results)=>{
+        res.send( 200 );
+    }).catch( (err)=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})
+
 
 // POST Route
 router.post('/', (req, res)=>{
@@ -33,5 +45,15 @@ router.post('/', (req, res)=>{
 })
 
 // DELETE ROUTE
+router.delete( '/:id', (req, res)=>{
+    const queryString = `DELETE FROM "shopping_list" where id=${req.params.id};`
+    pool.query( queryString ).then( (results)=>{
+      res.sendStatus( 201 );
+    }).catch( (err)=>{
+      console.log( err );
+      res.sendStatus( 500 );
+    })
+  })
+
 
 module.exports = router;
